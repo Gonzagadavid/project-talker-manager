@@ -4,7 +4,9 @@ const checkFields = (objectFields) => {
     .map((key) => (!objectFields[key] ? key : false))
     .filter((field) => field)[0];
   
-  return emptyField;
+  if (emptyField) return `O campo ${emptyField} é obrigatório`;
+
+  return false;
 };
 
 module.exports = checkFields;
