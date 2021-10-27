@@ -1,5 +1,6 @@
 const error = (err, _req, res, _next) => {
-  res.status(err.status).json(err.message);
+  console.log(err.message);
+  res.status(err.status).json({ message: err.message });
 };
 
 module.exports = error;
