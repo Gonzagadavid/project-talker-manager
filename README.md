@@ -71,7 +71,11 @@ Você vai desenvolver uma API de um CRUD (**C**reate, **R**ead, **U**pdate e **D
 
 ### Data de Entrega
 
-O projeto tem até a seguinte data: `04/11/2021 - 14:00h`. Para ser entregue a avaliação final.
+- Projeto individual.
+
+- Serão dois dias de projeto.
+
+- O projeto tem até a seguinte data: `04/11/2021 - 14:00h`. Para ser entregue a avaliação final.
 
 ---
 
