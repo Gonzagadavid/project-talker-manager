@@ -8,19 +8,31 @@ const validToken = require('../middlewares/validToken');
 
 const router = Router();
 
-router.get('/', (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
-    const talker = getTalkers();
+    const talker = await getTalkers();
     res.status(200).json(talker);
   } catch (_err) {
     next(ERROR_REQ);
   }
 });
 
-router.get('/:id', (req, res, next) => {
+router.get('/search', validToken, async (req, res, next) => {
+  const { q } = req.query;
+  try {
+    const talkers = await getTalkers();
+    if (!q) return res.status(200).json(talkers);
+    const talkerFiltered = talkers.filter(({ name }) => name.includes(q));
+    res.status(200).json(talkerFiltered);
+  } catch (_err) {
+    next(ERROR_REQ);
+  }
+});
+
+router.get('/:id', async (req, res, next) => {
   try {
     const { id: idParam } = req.params;
-    const talkers = getTalkers();
+    const talkers = await getTalkers();
     const talker = talkers.find(({ id }) => id === +idParam);
 
     if (!talker) return next(NOT_FOUND_TALKER);
