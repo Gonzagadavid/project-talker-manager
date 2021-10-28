@@ -4,6 +4,7 @@ const { ERROR_REQ, NOT_FOUND_TALKER } = require('../constants/messages');
 const validFields = require('../middlewares/validTalkerFields');
 const validFormat = require('../middlewares/validTalkerFormat');
 const postTalkers = require('../functions/postTalkers');
+const validToken = require('../middlewares/validToken');
 
 const router = Router();
 
@@ -30,7 +31,7 @@ router.get('/:id', (req, res, next) => {
   }
 });
 
-router.post('/', validFields, validFormat, async (req, res, next) => {
+router.post('/', validToken, validFields, validFormat, async (req, res, next) => {
   const { name, age, talk } = req.body; 
   try {
     const talkDate = await getTalkers();
@@ -45,7 +46,7 @@ router.post('/', validFields, validFormat, async (req, res, next) => {
   }
 });
 
-router.put('/:id', validFields, validFormat, async (req, res, next) => {
+router.put('/:id', validToken, validFields, validFormat, async (req, res, next) => {
   const { id } = req.params;
   const { name, age, talk } = req.body; 
   const newTalker = { id: +id, name, age, talk };
