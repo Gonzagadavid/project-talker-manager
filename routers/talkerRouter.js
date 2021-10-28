@@ -32,7 +32,6 @@ router.get('/:id', (req, res, next) => {
 
 router.post('/', validFields, validFormat, async (req, res, next) => {
   const { name, age, talk } = req.body; 
-  console.log(req.body);
   try {
     const talkDate = await getTalkers();
     const id = talkDate.length + 1;
@@ -41,6 +40,22 @@ router.post('/', validFields, validFormat, async (req, res, next) => {
     await postTalkers([...talkDate, talker]);
     
     res.status(201).json(talker);
+  } catch (_err) {
+    next(ERROR_REQ);
+  }
+});
+
+router.put('/:id', validFields, validFormat, async (req, res, next) => {
+  const { id } = req.params;
+  const { name, age, talk } = req.body; 
+  const newTalker = { id: +id, name, age, talk };
+  try {
+    const talkDate = await getTalkers();
+    const newTalkDate = talkDate.map((oldTalker) => (oldTalker.id === +id ? newTalker : oldTalker));
+    
+    await postTalkers(newTalkDate);
+    
+    res.status(200).json(newTalker);
   } catch (_err) {
     next(ERROR_REQ);
   }
