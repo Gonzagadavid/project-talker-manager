@@ -26,6 +26,8 @@ const WATCHED_AT_FORMAT = {
 
 const RATE_FORMAT = { status: 400, message: 'O campo "rate" deve ser um inteiro de 1 à 5' };
 
+const DELETE_TALKER = { message: 'Pessoa palestrante deletada com sucesso' };
+
 module.exports = { 
   NOT_FOUND_TALKER,
   ERROR_REQ,
@@ -38,4 +40,5 @@ module.exports = {
   AGE_FORMAT,
   WATCHED_AT_FORMAT,
   RATE_FORMAT,
+  DELETE_TALKER,
 };

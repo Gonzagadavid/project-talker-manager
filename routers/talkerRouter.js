@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const getTalkers = require('../functions/getTalkers');
-const { ERROR_REQ, NOT_FOUND_TALKER } = require('../constants/messages');
+const { ERROR_REQ, NOT_FOUND_TALKER, DELETE_TALKER } = require('../constants/messages');
 const validFields = require('../middlewares/validTalkerFields');
 const validFormat = require('../middlewares/validTalkerFormat');
 const postTalkers = require('../functions/postTalkers');
@@ -57,6 +57,21 @@ router.put('/:id', validToken, validFields, validFormat, async (req, res, next) 
     await postTalkers(newTalkDate);
     
     res.status(200).json(newTalker);
+  } catch (_err) {
+    next(ERROR_REQ);
+  }
+});
+
+router.delete('/:id', validToken, async (req, res, next) => {
+  const { id } = req.params;
+
+  try {
+    const talkDate = await getTalkers();
+    const newTalkDate = talkDate.filter((talker) => talker.id !== +id);
+    
+    await postTalkers(newTalkDate);
+
+    res.status(200).json(DELETE_TALKER);
   } catch (_err) {
     next(ERROR_REQ);
   }
