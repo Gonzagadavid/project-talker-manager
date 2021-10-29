@@ -1,4 +1,5 @@
 const { Router } = require('express');
+const rescue = require('express-rescue');
 const { validTalkerFields, validTalkerFormat, validToken } = require('../middlewares');
 const {  
   deleteTalkerById, editTalkerById, getTalkersById,
@@ -7,16 +8,16 @@ const {
 
 const router = Router();
 
-router.get('/', getTotalTalkers);
+router.get('/', rescue(getTotalTalkers));
 
-router.get('/search', validToken, getSearchTalkers);
+router.get('/search', validToken, rescue(getSearchTalkers));
 
-router.get('/:id', getTalkersById);
+router.get('/:id', rescue(getTalkersById));
 
-router.post('/', validToken, validTalkerFields, validTalkerFormat, postOneTalker);
+router.post('/', validToken, validTalkerFields, validTalkerFormat, rescue(postOneTalker));
 
-router.put('/:id', validToken, validTalkerFields, validTalkerFormat, editTalkerById);
+router.put('/:id', validToken, validTalkerFields, validTalkerFormat, rescue(editTalkerById));
 
-router.delete('/:id', validToken, deleteTalkerById);
+router.delete('/:id', validToken, rescue(deleteTalkerById));
 
 module.exports = router;

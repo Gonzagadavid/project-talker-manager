@@ -1,6 +1,9 @@
+const { ERROR_REQ } = require('../constants/messages');
+
 const error = (err, _req, res, _next) => {
-  console.log(err.message);
-  res.status(err.status).json({ message: err.message });
+  const status = err.status || 500;
+  const message = status === 500 ? ERROR_REQ : err.message;
+  res.status(status).json({ message });
 };
 
 module.exports = error;
