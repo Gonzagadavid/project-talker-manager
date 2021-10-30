@@ -426,6 +426,7 @@
       },
     }
   ];
+  
   ```
 
 - A requisição deve ter o token de autenticação nos headers, no campo `authorization`.
