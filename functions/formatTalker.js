@@ -5,7 +5,7 @@ const formatTalker = ({ name, age, rate }) => {
 
   if (age < 18) return AGE_FORMAT;
 
-  if (rate < 1 || rate > 5) return RATE_FORMAT;
+  if ((rate < 1 || rate > 5) && parseInt(rate) === rate) return RATE_FORMAT;
 
   return false;
 };
