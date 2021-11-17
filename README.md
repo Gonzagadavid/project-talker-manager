@@ -1,6 +1,6 @@
 <div align="center"><h1>Talker Manager</h1></div>
 
-##Projeto de avaliação feito durante o curso da Trybe, buscando colocar em prática:
+## Projeto de avaliação feito durante o curso da Trybe, buscando colocar em prática:
 
 - Realizar operações assíncronas utilizando callbacks;
 - Realizar operações assíncronas utilizando Promises;
@@ -17,7 +17,7 @@
 - Criar rotas e aplicar middlewares.
 
 
-##Esse projeto foi submetido a testes de 7 requisitos, atingindo 100% do que foi proposto:
+## Esse projeto foi submetido a testes de 7 requisitos, atingindo 100% do que foi proposto:
 
 ### 1 - Crie o endpoint GET `/talker`
 
